@@ -9,7 +9,7 @@ Release:	0.3
 License:	GPL
 Group:		Libraries
 Vendor:		Turck Software
-Source0:	http://dl.sourceforge.net/sourceforge/%{_pkgname}/%{_pkgname}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/%{_pkgname}/%{_pkgname}-%{version}.tar.gz
 # Source0-md5:	6adfff394a13aa181eb127caeed7224b
 URL:		http://www.turcksoft.com/en/e_mmc.htm
 BuildRequires:	automake
