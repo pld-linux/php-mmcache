@@ -34,10 +34,6 @@ of PHP scripts by caching them in compiled state, so that the overhead
 of compiling is almost completely eliminated. Also it uses some
 optimizations for speed up of scripts execution.
 
-Please don't use Turck MMCache Encoder for commercial purpose until
-Turck MMCache version 2.4.0 is out. The format of encoded files may be
-changed and it is possible that the old formats will not be supported.
-
 More information can be find at %{url}.
 
 %description -l pl
@@ -46,10 +42,6 @@ efektywno¶æ skryptów PHP poprzez buforowanie ich w postaci
 skompilowanej, dziêki czemu powtórne kompilowanie jest praktycznie
 wyeliminowane. Wykorzystywane jest tak¿e parê optymalizacji, aby
 przyspieszyæ wykonywanie skryptów.
-
-Turck MMCache Encoder nie powinien byæ u¿ywany do celów komercyjnych
-a¿ do wydania wersji 2.4.0. Byæ mo¿e zostanie zmieniony format plików
-i stare wersje nie bêd± obs³ugiwane.
 
 Wiêcej informacji mo¿na znale¼æ pod %{url}.
 
