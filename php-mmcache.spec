@@ -1,5 +1,3 @@
-
-%define		php_prefix	/usr
 %define		_name		mmcache
 %define		_pkgname	turck-mmcache
 
@@ -8,7 +6,6 @@ Summary(pl):	Modu³ Turck MMCache dla PHP
 Name:		php-%{_name}
 Version:	2.3.19
 Release:	0.1
-Epoch:		0
 License:	GPL
 Group:		Libraries
 Vendor:		Turck Software
@@ -39,22 +36,23 @@ jest tak¿e pare optymalizacji, aby przyspieszyæ wykonywanie skryptów.
 
 %prep
 %setup -q -n %{_pkgname}-%{version}
-%{php_prefix}/bin/phpize
 
 %build
+phpize
 %{__aclocal}
-%configure --enable-mmcache=shared --with-php-config=%{php_prefix}/bin/php-config
+%configure \
+	--enable-mmcache=shared \
+	--with-php-config=%{_bindir}/php-config
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT
-install -D ./modules/mmcache.so $RPM_BUILD_ROOT%{extensionsdir}/mmcache.so
+install -d $RPM_BUILD_ROOT%{extensionsdir}
+
+install ./modules/mmcache.so $RPM_BUILD_ROOT%{extensionsdir}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
-
-%pre
 
 %post
 %{_sbindir}/php-module-install install mmcache %{_sysconfdir}/php.ini
@@ -63,8 +61,6 @@ rm -rf $RPM_BUILD_ROOT
 if [ "$1" = "0" ]; then
 	%{_sbindir}/php-module-install remove mmcache %{_sysconfdir}/php.ini
 fi
-
-%postun
 
 %files
 %defattr(644,root,root,755)
