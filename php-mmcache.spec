@@ -15,6 +15,7 @@ Source0:	http://dl.sourceforge.net/%{_pkgname}/%{_pkgname}-%{version}.tar.gz
 URL:		http://turck-mmcache.sourceforge.net
 BuildRequires:	automake
 BuildRequires:	php-devel >= 4.1
+BuildRequires:	libtool
 Requires:	apache >= 1.3
 Requires:	php >= 4.1
 Requires:	php-zlib
