@@ -4,14 +4,14 @@
 Summary:	Turck MMCache extension module for PHP
 Summary(pl):	Modu³ Turck MMCache dla PHP
 Name:		php-%{_name}
-Version:	2.4.4
+Version:	2.4.5
 Release:	0.1
 Epoch:		0
 License:	GPL
 Group:		Libraries
 Vendor:		Turck Software
 Source0:	http://dl.sourceforge.net/%{_pkgname}/%{_pkgname}-%{version}.tar.gz
-# Source0-md5:	a968adaa9ce6e9f68e6f9fd834e1b836
+# Source0-md5:	ee5230ce92efd7ae420dbced08856bc8
 URL:		http://www.turcksoft.com/en/e_mmc.htm
 BuildRequires:	automake
 BuildRequires:	php-devel >= 4.1
