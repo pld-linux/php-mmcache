@@ -14,10 +14,10 @@ Source0:	http://dl.sourceforge.net/sourceforge/%{_pkgname}/%{_pkgname}-%{version
 URL:		http://www.turcksoft.com/en/e_mmc.htm
 BuildRequires:	automake
 BuildRequires:	php-devel >= 4.1
-Requires:	php-zlib
 Requires:	apache >= 1.3
-Requires(post,preun):	php-common >= 4.1
 Requires:	php >= 4.1
+Requires:	php-zlib
+Requires(post,preun):	php-common >= 4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/php
