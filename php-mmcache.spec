@@ -1,11 +1,13 @@
 %define		_name		mmcache
 %define		_pkgname	turck-mmcache
+# automatic macro should look nicer...
+%define		php_ver		4.3.7
 
 Summary:	Turck MMCache extension module for PHP
 Summary(pl):	Modu³ Turck MMCache dla PHP
 Name:		php-%{_name}
 Version:	2.4.6
-Release:	0.1
+Release:	0.9
 Epoch:		0
 License:	GPL
 Group:		Libraries
@@ -17,7 +19,8 @@ BuildRequires:	automake
 BuildRequires:	php-devel >= 4.1
 BuildRequires:	libtool
 Requires:	apache >= 1.3
-Requires:	php >= 4.1
+Requires:	php >= %{php_ver}
+Requires:	php <= %{php_ver}-999
 Requires:	php-zlib
 Requires(post,preun):	php-common >= 4.1
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -56,7 +59,8 @@ Summary(pl):	Osobny loader plików Turck MMCache
 Group:		Libraries
 Requires:	apache >= 1.3
 Requires(post,preun):	php-common >= 4.1
-Requires:	php >= 4.1
+Requires:	php >= %{php_ver}
+Requires:	php <= %{php_ver}-999
 Provides:	TurckLoader = %{epoch}:%{version}-%{release}
 
 %description TurckLoader
