@@ -6,6 +6,7 @@ Summary(pl):	Modu³ Turck MMCache dla PHP
 Name:		php-%{_name}
 Version:	2.4.1
 Release:	0.1
+Epoch:		0
 License:	GPL
 Group:		Libraries
 Vendor:		Turck Software
