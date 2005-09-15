@@ -1,0 +1,5 @@
+- release 0.9
+- strict php requires (from apache's error_log):
+  PHP Warning:  [Turck MMCache] This build of "Turck MMCache" was
+  compiled for PHP version 4.3.4. Rebuild it for your PHP version
+  (4.3.7) or download precompiled binaries.\n in Unknown on line 0
