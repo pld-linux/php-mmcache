@@ -153,7 +153,7 @@ fi
 
 %files TurckLoader
 %defattr(644,root,root,755)
-%doc CREDITS EXPERIMENTAL
+%doc CREDITS EXPERIMENTAL README.loader
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/TurckLoader.ini
 %attr(755,root,root) %{extensionsdir}/TurckLoader.so
 
