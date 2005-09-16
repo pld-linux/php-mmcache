@@ -1,14 +1,14 @@
-%define		_name		mmcache
+%define		_modname		mmcache
 %define		_pkgname	turck-mmcache
-%define		php_ver		%(rpm -q --qf '%%{epoch}:%%{version}' php-devel)
 %define		_sysconfdir	/etc/php
-%define		extensionsdir	%{_libdir}/php
+%define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
 
 Summary:	Turck MMCache extension module for PHP
 Summary(pl):	Modu³ Turck MMCache dla PHP
-Name:		php-%{_name}
+Name:		php-%{_modname}
 Version:	2.4.6
 Release:	7
+Epoch:		0
 License:	GPL
 Group:		Libraries
 Vendor:		Turck Software
@@ -18,6 +18,8 @@ URL:		http://turck-mmcache.sourceforge.net
 BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.238
 %{?requires_php_extension}
+%{?requires_zend_extension}
+Requires:	%{_sysconfdir}/conf.d
 Requires:	apache >= 1.3
 Requires:	php-zlib
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -45,6 +47,7 @@ Summary(pl):	Osobny loader plików Turck MMCache
 Group:		Libraries
 Requires:	apache >= 1.3
 %{?requires_php_extension}
+%{?requires_zend_extension}
 Provides:	TurckLoader = %{epoch}:%{version}-%{release}
 
 %description TurckLoader
@@ -105,9 +108,9 @@ install ./mmcache_password.php $RPM_BUILD_ROOT%{_bindir}
 install ./mmcache.php $RPM_BUILD_ROOT%{_bindir}
 install ./TurckLoader/modules/TurckLoader.so $RPM_BUILD_ROOT%{extensionsdir}
 
-cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_name}.ini
-; Enable %{_name} extension module
-extension=%{_name}.so
+cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_modname}.ini
+; Enable %{_modname} extension module
+extension=%{_modname}.so
 EOF
 
 cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/TurckLoader.ini
@@ -147,8 +150,8 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc CREDITS EXPERIMENTAL README TODO
+%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/%{_modname}.ini
 %attr(755,root,root) %{extensionsdir}/mmcache.so
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/%{_name}.ini
 %attr(755,root,root) %{_bindir}/encoder.php
 
 %files TurckLoader
