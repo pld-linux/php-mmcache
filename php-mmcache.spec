@@ -20,7 +20,7 @@ BuildRequires:	rpmbuild(macros) >= 1.238
 %{?requires_php_extension}
 %{?requires_zend_extension}
 Requires:	%{_sysconfdir}/conf.d
-Requires:	apache >= 1.3
+Requires:	webserver = apache
 Requires:	php-zlib
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,7 +45,7 @@ Wiêcej informacji mo¿na znale¼æ pod %{url}.
 Summary:	Standalone loader of Turck MMCache's cached files
 Summary(pl):	Osobny loader plików Turck MMCache
 Group:		Libraries
-Requires:	apache >= 1.3
+Requires:	webserver = apache
 %{?requires_php_extension}
 %{?requires_zend_extension}
 Provides:	TurckLoader = %{epoch}:%{version}-%{release}
