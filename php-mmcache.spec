@@ -11,7 +11,6 @@ Release:	8
 Epoch:		0
 License:	GPL
 Group:		Libraries
-Vendor:		Turck Software
 Source0:	http://dl.sourceforge.net/%{_pkgname}/%{_pkgname}-%{version}.tar.gz
 # Source0-md5:	bcf671bec2e8b009e9b2d8f8d2574041
 URL:		http://turck-mmcache.sourceforge.net
@@ -30,7 +29,7 @@ of PHP scripts by caching them in compiled state, so that the overhead
 of compiling is almost completely eliminated. Also it uses some
 optimizations for speed up of scripts execution.
 
-More information can be find at %{url}.
+More information can be found at %{url}.
 
 %description -l pl
 Turck MMCache jest akceleratorem i koderem PHP. Zwiêksza on
