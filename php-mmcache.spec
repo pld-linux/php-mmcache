@@ -7,7 +7,7 @@ Summary:	Turck MMCache extension module for PHP
 Summary(pl):	Modu³ Turck MMCache dla PHP
 Name:		php-%{_modname}
 Version:	2.4.6
-Release:	8
+Release:	9
 Epoch:		0
 License:	GPL
 Group:		Libraries
@@ -18,9 +18,9 @@ BuildRequires:	php-devel >= 3:5.0.0
 BuildRequires:	rpmbuild(macros) >= 1.238
 %{?requires_php_extension}
 %{?requires_zend_extension}
+Requires(triggerpostun):	sed >= 4.0
 Requires:	%{_sysconfdir}/conf.d
 Requires:	php-zlib
-Requires:	webserver = apache
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -44,7 +44,7 @@ Wiêcej informacji mo¿na znale¼æ pod %{url}.
 Summary:	Standalone loader of Turck MMCache's cached files
 Summary(pl):	Osobny loader plików Turck MMCache
 Group:		Libraries
-Requires:	webserver = apache
+Requires(triggerpostun):	sed >= 4.0
 %{?requires_php_extension}
 %{?requires_zend_extension}
 Provides:	TurckLoader = %{epoch}:%{version}-%{release}
@@ -141,10 +141,10 @@ if [ "$1" = 0 ]; then
 fi
 
 %triggerpostun -- %{name} <= 2.4.6-5
-%{_sbindir}/php-module-install remove mmcache %{_sysconfdir}/php.ini
+%{__sed} -i -e '/^extension[[:space:]]*=[[:space:]]*mmcache\.so/d' %{_sysconfdir}/php.ini
 
 %triggerpostun TurckLoader -- %{name}-TurckLoader <= 2.4.6-5
-%{_sbindir}/php-module-install remove TurckLoader %{_sysconfdir}/php.ini
+%{__sed} -i -e '/^extension[[:space:]]*=[[:space:]]*TurckLoader\.so/d' %{_sysconfdir}/php.ini
 
 %files
 %defattr(644,root,root,755)
