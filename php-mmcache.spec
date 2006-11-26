@@ -7,7 +7,7 @@ Summary:	Turck MMCache extension module for PHP
 Summary(pl):	Modu³ Turck MMCache dla PHP
 Name:		php-%{_modname}
 Version:	2.4.6
-Release:	9
+Release:	10
 Epoch:		0
 License:	GPL
 Group:		Libraries
@@ -20,7 +20,7 @@ BuildRequires:	rpmbuild(macros) >= 1.322
 %{?requires_zend_extension}
 Requires(triggerpostun):	sed >= 4.0
 Requires:	%{_sysconfdir}/conf.d
-Requires:	php-zlib
+Requires:	php(zlib)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
