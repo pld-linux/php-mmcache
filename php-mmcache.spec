@@ -1,8 +1,5 @@
 %define		_modname		mmcache
 %define		_pkgname	turck-mmcache
-%define		_sysconfdir	/etc/php
-%define		extensionsdir	%(php-config --extension-dir 2>/dev/null)
-
 Summary:	Turck MMCache extension module for PHP
 Summary(pl):	Modu³ Turck MMCache dla PHP
 Name:		php-%{_modname}
@@ -15,11 +12,11 @@ Source0:	http://dl.sourceforge.net/%{_pkgname}/%{_pkgname}-%{version}.tar.gz
 # Source0-md5:	bcf671bec2e8b009e9b2d8f8d2574041
 URL:		http://turck-mmcache.sourceforge.net
 BuildRequires:	php-devel >= 3:5.0.0
-BuildRequires:	rpmbuild(macros) >= 1.322
+BuildRequires:	rpmbuild(macros) >= 1.344
 %{?requires_php_extension}
 %{?requires_zend_extension}
 Requires(triggerpostun):	sed >= 4.0
-Requires:	%{_sysconfdir}/conf.d
+Requires:	php-common >= 4:5.0.4
 Requires:	php(zlib)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -99,20 +96,20 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir}/conf.d,%{extensionsdir},%{_bindir}}
+install -d $RPM_BUILD_ROOT{%{php_sysconfdir}/conf.d,%{php_extensiondir},%{_bindir}}
 
-install ./modules/mmcache.so $RPM_BUILD_ROOT%{extensionsdir}
+install ./modules/mmcache.so $RPM_BUILD_ROOT%{php_extensiondir}
 install ./encoder.php $RPM_BUILD_ROOT%{_bindir}
 install ./mmcache_password.php $RPM_BUILD_ROOT%{_bindir}
 install ./mmcache.php $RPM_BUILD_ROOT%{_bindir}
-install ./TurckLoader/modules/TurckLoader.so $RPM_BUILD_ROOT%{extensionsdir}
+install ./TurckLoader/modules/TurckLoader.so $RPM_BUILD_ROOT%{php_extensiondir}
 
-cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/%{_modname}.ini
+cat <<'EOF' > $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/%{_modname}.ini
 ; Enable %{_modname} extension module
 extension=%{_modname}.so
 EOF
 
-cat <<'EOF' > $RPM_BUILD_ROOT%{_sysconfdir}/conf.d/TurckLoader.ini
+cat <<'EOF' > $RPM_BUILD_ROOT%{php_sysconfdir}/conf.d/TurckLoader.ini
 ; Enable TurckLoader
 extension=TurckLoader.so
 EOF
@@ -121,43 +118,39 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %post
-[ ! -f /etc/apache/conf.d/??_mod_php.conf ] || %service -q apache restart
-[ ! -f /etc/httpd/httpd.conf/??_mod_php.conf ] || %service -q httpd restart
+%php_webserver_restart
 
 %postun
 if [ "$1" = 0 ]; then
-	[ ! -f /etc/apache/conf.d/??_mod_php.conf ] || %service -q apache restart
-	[ ! -f /etc/httpd/httpd.conf/??_mod_php.conf ] || %service -q httpd restart
+	%php_webserver_restart
 fi
 
 %post TurckLoader
-[ ! -f /etc/apache/conf.d/??_mod_php.conf ] || %service -q apache restart
-[ ! -f /etc/httpd/httpd.conf/??_mod_php.conf ] || %service -q httpd restart
+%php_webserver_restart
 
 %postun TurckLoader
 if [ "$1" = 0 ]; then
-	[ ! -f /etc/apache/conf.d/??_mod_php.conf ] || %service -q apache restart
-	[ ! -f /etc/httpd/httpd.conf/??_mod_php.conf ] || %service -q httpd restart
+	%php_webserver_restart
 fi
 
 %triggerpostun -- %{name} <= 2.4.6-5
-%{__sed} -i -e '/^extension[[:space:]]*=[[:space:]]*mmcache\.so/d' %{_sysconfdir}/php.ini
+%{__sed} -i -e '/^extension[[:space:]]*=[[:space:]]*mmcache\.so/d' %{php_sysconfdir}/php.ini
 
 %triggerpostun TurckLoader -- %{name}-TurckLoader <= 2.4.6-5
-%{__sed} -i -e '/^extension[[:space:]]*=[[:space:]]*TurckLoader\.so/d' %{_sysconfdir}/php.ini
+%{__sed} -i -e '/^extension[[:space:]]*=[[:space:]]*TurckLoader\.so/d' %{php_sysconfdir}/php.ini
 
 %files
 %defattr(644,root,root,755)
 %doc CREDITS EXPERIMENTAL README TODO
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/%{_modname}.ini
-%attr(755,root,root) %{extensionsdir}/mmcache.so
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/%{_modname}.ini
+%attr(755,root,root) %{php_extensiondir}/mmcache.so
 %attr(755,root,root) %{_bindir}/encoder.php
 
 %files TurckLoader
 %defattr(644,root,root,755)
 %doc CREDITS EXPERIMENTAL README.loader
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/conf.d/TurckLoader.ini
-%attr(755,root,root) %{extensionsdir}/TurckLoader.so
+%config(noreplace) %verify(not md5 mtime size) %{php_sysconfdir}/conf.d/TurckLoader.ini
+%attr(755,root,root) %{php_extensiondir}/TurckLoader.so
 
 %files webinterface
 %defattr(644,root,root,755)
