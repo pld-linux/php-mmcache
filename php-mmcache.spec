@@ -1,7 +1,7 @@
 %define		_modname		mmcache
 %define		_pkgname	turck-mmcache
 Summary:	Turck MMCache extension module for PHP
-Summary(pl):	Modu³ Turck MMCache dla PHP
+Summary(pl.UTF-8):   ModuÅ‚ Turck MMCache dla PHP
 Name:		php-%{_modname}
 Version:	2.4.6
 Release:	10
@@ -28,18 +28,18 @@ optimizations for speed up of scripts execution.
 
 More information can be found at %{url}.
 
-%description -l pl
-Turck MMCache jest akceleratorem i koderem PHP. Zwiêksza on
-efektywno¶æ skryptów PHP poprzez buforowanie ich w postaci
-skompilowanej, dziêki czemu powtórne kompilowanie jest praktycznie
-wyeliminowane. Wykorzystywane jest tak¿e parê optymalizacji, aby
-przyspieszyæ wykonywanie skryptów.
+%description -l pl.UTF-8
+Turck MMCache jest akceleratorem i koderem PHP. ZwiÄ™ksza on
+efektywnoÅ›Ä‡ skryptÃ³w PHP poprzez buforowanie ich w postaci
+skompilowanej, dziÄ™ki czemu powtÃ³rne kompilowanie jest praktycznie
+wyeliminowane. Wykorzystywane jest takÅ¼e parÄ™ optymalizacji, aby
+przyspieszyÄ‡ wykonywanie skryptÃ³w.
 
-Wiêcej informacji mo¿na znale¼æ pod %{url}.
+WiÄ™cej informacji moÅ¼na znaleÅºÄ‡ pod %{url}.
 
 %package TurckLoader
 Summary:	Standalone loader of Turck MMCache's cached files
-Summary(pl):	Osobny loader plików Turck MMCache
+Summary(pl.UTF-8):   Osobny loader plikÃ³w Turck MMCache
 Group:		Libraries
 Requires(triggerpostun):	sed >= 4.0
 %{?requires_php_extension}
@@ -50,13 +50,13 @@ Provides:	TurckLoader = %{epoch}:%{version}-%{release}
 TurckLoader is a standalone loader. You can use files encoded by
 without it.
 
-%description TurckLoader -l pl
-TurckLoader jest osobnym loaderem. Mo¿na u¿ywaæ plików zakodowanych
+%description TurckLoader -l pl.UTF-8
+TurckLoader jest osobnym loaderem. MoÅ¼na uÅ¼ywaÄ‡ plikÃ³w zakodowanych
 poprzez Truck MMCache bez niego samego.
 
 %package webinterface
 Summary:	WEB interface for Turck MMCache
-Summary(pl):	Interfejs WEB dla Turck MMCache
+Summary(pl.UTF-8):   Interfejs WEB dla Turck MMCache
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
@@ -67,14 +67,14 @@ is recommended to restrict the usage of this script by your local IP.
 
 More information you can find at %{url}.
 
-%description webinterface -l pl
-Turck MMCache mo¿e byæ sterowany ze strony internetowej z
-wykorzystaniem skryptu mmcache.php. Jedyne co trzeba zrobiæ, to
-umie¶ciæ plik we w³a¶ciwym miejscu na stronie internetowej. Z powodów
-bezpieczeñstwa zalecane jest, aby ograniczyæ korzystanie ze skryptu do
+%description webinterface -l pl.UTF-8
+Turck MMCache moÅ¼e byÄ‡ sterowany ze strony internetowej z
+wykorzystaniem skryptu mmcache.php. Jedyne co trzeba zrobiÄ‡, to
+umieÅ›ciÄ‡ plik we wÅ‚aÅ›ciwym miejscu na stronie internetowej. Z powodÃ³w
+bezpieczeÅ„stwa zalecane jest, aby ograniczyÄ‡ korzystanie ze skryptu do
 lokalnego adresu.
 
-Wiêcej informacji mo¿na znale¼æ %{url}.
+WiÄ™cej informacji moÅ¼na znaleÅºÄ‡ %{url}.
 
 %prep
 %setup -q -n %{_pkgname}-%{version}
