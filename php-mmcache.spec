@@ -1,7 +1,7 @@
 %define		_modname		mmcache
 %define		_pkgname	turck-mmcache
 Summary:	Turck MMCache extension module for PHP
-Summary(pl.UTF-8):   Moduł Turck MMCache dla PHP
+Summary(pl.UTF-8):	Moduł Turck MMCache dla PHP
 Name:		php-%{_modname}
 Version:	2.4.6
 Release:	10
@@ -39,7 +39,7 @@ Więcej informacji można znaleźć pod %{url}.
 
 %package TurckLoader
 Summary:	Standalone loader of Turck MMCache's cached files
-Summary(pl.UTF-8):   Osobny loader plików Turck MMCache
+Summary(pl.UTF-8):	Osobny loader plików Turck MMCache
 Group:		Libraries
 Requires(triggerpostun):	sed >= 4.0
 %{?requires_php_extension}
@@ -56,7 +56,7 @@ poprzez Truck MMCache bez niego samego.
 
 %package webinterface
 Summary:	WEB interface for Turck MMCache
-Summary(pl.UTF-8):   Interfejs WEB dla Turck MMCache
+Summary(pl.UTF-8):	Interfejs WEB dla Turck MMCache
 Group:		Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 
