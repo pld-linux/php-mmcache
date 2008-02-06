@@ -4,7 +4,7 @@ Summary:	Turck MMCache extension module for PHP
 Summary(pl.UTF-8):	Moduł Turck MMCache dla PHP
 Name:		php-%{_modname}
 Version:	2.4.6
-Release:	10
+Release:	11
 Epoch:		0
 License:	GPL
 Group:		Libraries
@@ -133,10 +133,10 @@ if [ "$1" = 0 ]; then
 	%php_webserver_restart
 fi
 
-%triggerpostun -- %{name} <= 2.4.6-5
+%triggerpostun -- %{name} < 2.4.6-6
 %{__sed} -i -e '/^extension[[:space:]]*=[[:space:]]*mmcache\.so/d' %{php_sysconfdir}/php.ini
 
-%triggerpostun TurckLoader -- %{name}-TurckLoader <= 2.4.6-5
+%triggerpostun TurckLoader -- %{name}-TurckLoader < 2.4.6-6
 %{__sed} -i -e '/^extension[[:space:]]*=[[:space:]]*TurckLoader\.so/d' %{php_sysconfdir}/php.ini
 
 %files
