@@ -1,3 +1,5 @@
+# TODO
+# - php 5.2 compat
 %define		_modname		mmcache
 %define		_pkgname	turck-mmcache
 Summary:	Turck MMCache extension module for PHP
